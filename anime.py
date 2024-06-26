@@ -1,7 +1,7 @@
 import requests
 import json
 
-API_KEY = ''
+API_KEY = 'AIzaSyAciVl5e8XIwILXZ1fTq62ykFYLcSD6YjA'
 SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
 VIDEO_URL = 'https://www.googleapis.com/youtube/v3/videos'
 ANIME_URL = 'https://anime-api.deno.dev/anime/v1/master'

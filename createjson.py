@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-API_KEY = 'AIzaSyAciVl5e8XIwILXZ1fTq62ykFYLcSD6YjA'
+API_KEY = ''
 SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
 VIDEO_URL = 'https://www.googleapis.com/youtube/v3/videos'
 
@@ -12,13 +12,13 @@ def get_anime_name():
     return j
 
 def get_video_ids(page_token, keyword,key):
-    # 空文字列を除外
-    query = ' '.join(filter(None, keyword["shortname"]))
+    query = keyword["name"]
     params = {
         'part': 'id,snippet',
-        'q': query,
+        'q': '"{query}"',
         'maxResults': 50,
         'pageToken': page_token,
+        'order': 'relevance',
         'key': API_KEY
     }
     response = requests.get(SEARCH_URL, params=params)
@@ -78,7 +78,7 @@ def main():
     keywords = get_anime_name()
     count=0
 
-    for i in range(len(keywords)):
+    for i in range(0,len(keywords)):
         while True:
             video_id_data = get_video_ids(page_token, keywords[i],i)
             if video_id_data is None:
